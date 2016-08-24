@@ -9,3 +9,4 @@ CREATE TABLE user (id INTEGER PRIMARY KEY AUTO_INCREMENT,
 CREATE TABLE permission(level INTEGER NOT NULL,
                         context VARCHAR(100) NOT NULL);
 INSERT INTO permission VALUES (1,'administer'),(2,'boss'),(3,'human being');
+INSERT INTO user (name, password, permission_level) VALUES ('wanxiaowei', 'admin', 1)

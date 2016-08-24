@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import flash, redirect, render_template, request, url_for, Blueprint, session
-from project.model.users import Users
+import project.model.users as Users
 users_blueprint = Blueprint(
         'users', __name__,
         template_folder='templates'
@@ -10,12 +10,12 @@ users_blueprint = Blueprint(
 def login():
     error = None
     if request.method == 'POST':
-        per = Users.login(request.form['username'], request.form['password'])
+        per, lvl = Users.login(request.form['username'], request.form['password'])
         if not per:
             error = 'username password not match!'
         else:
-            session['permission'] = per
-            flash('You were logged in')
+            session['permission'] = lvl
+            flash('welcome,' + per)
             return redirect(url_for('users.home'))
     return render_template('login.html', error=error)
 
@@ -27,6 +27,5 @@ def logout():
 
 @users_blueprint.route('/')
 def home():
-    name = session.get('permission','')
-    return render_template('home.html', name=name)
+    return render_template('home.html')
 
