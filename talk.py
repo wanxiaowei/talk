@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
-import sys
-
+from project import app
+app.config.from_object('config')
+if __name__ == '__main__' :
+    app.run()
