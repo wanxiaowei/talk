@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import flash redirect, render_template, request, url_for, Blueprint, session
+from flask import flash, redirect, render_template, request, url_for, Blueprint, session
 
 admin_blueprint = Blueprint(
         'admin', __name__,
@@ -34,6 +34,6 @@ def manage():
     if request.method == 'POST':
         print(request.form)
         flash('success')
-        redirect(url_for('admin.home'))
+        return redirect(url_for('admin.home'))
     return render_template('manage.html', error=error, perinfo=info)
 
